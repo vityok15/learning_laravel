@@ -55,6 +55,7 @@ class PostController extends Controller
             ]
         ];
 
+        // Збереження в базу постів
         foreach ($post1 as $item) {
             Post::create($item);
         }
