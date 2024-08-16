@@ -44,6 +44,7 @@ class PostController extends Controller
                 'deleted_at' => NULL
             ],
             [
+
                 'title' => 'Третє повідомлення',
                 'content' => 'Це текст третього повідомлення.',
                 'image' => 'image3.jpg',
@@ -54,6 +55,8 @@ class PostController extends Controller
                 'deleted_at' => NULL
             ]
         ];
+
+        //dsdsad
 
         // Збереження в базу постів
         foreach ($post1 as $item) {
