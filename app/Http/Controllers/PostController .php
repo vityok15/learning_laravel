@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
 
-    // Вивожу з бази пости
+    //Вивожу з бази пости
 
     public function index()
     {
@@ -44,7 +44,6 @@ class PostController extends Controller
                 'deleted_at' => NULL
             ],
             [
-
                 'title' => 'Третє повідомлення',
                 'content' => 'Це текст третього повідомлення.',
                 'image' => 'image3.jpg',
@@ -56,14 +55,13 @@ class PostController extends Controller
             ]
         ];
 
-        //dsdsad
 
-        // Збереження в базу постів
+
+        // Збереження в базу постів;
         foreach ($post1 as $item) {
             Post::create($item);
         }
         dd("create");
-
 
     }
 }
