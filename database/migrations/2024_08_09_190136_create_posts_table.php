@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('is_published')->default(1);
             $table->timestamps();
 
+            //add 
             $table->softDeletes();
         });
     }

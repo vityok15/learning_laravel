@@ -17,7 +17,7 @@ class PostController extends Controller
         dump($post);
     }
 
-    // Записую пости в базу
+    // Write posts in db
 
     public function create()
     {
@@ -55,7 +55,7 @@ class PostController extends Controller
             ]
         ];
 
-        // Збереження в базу постів;
+        // Dowloads in db posts;
         foreach ($post1 as $item) {
             Post::create($item);
         }
@@ -68,6 +68,14 @@ class PostController extends Controller
             $post->update([
                'title' => '1111111' 
             ]);
+        }
+        // Method delete 
+        // update migranion php artisan:fresh
+        public function delete() {
+            $post = Post::withTrashed()->find(2);
+         // $post->restore(); extract deleted data
+            $post->delete();
+            dd('deete');
         }
 }
 
