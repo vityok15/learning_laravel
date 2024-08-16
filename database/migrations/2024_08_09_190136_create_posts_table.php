@@ -37,3 +37,12 @@ return new class extends Migration
         Schema::dropIfExists('posts');
     }
 };
+
+
+
+
+// php artisan make:migration    add_colum_discription_to_posts_table
+
+// php artisan migrate   залить міграцію
+
+// php artisan migrate:rollback  дробнуть міграцію
