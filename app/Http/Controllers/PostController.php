@@ -1,27 +1,23 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
-
 
 use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
-    //Вивожу з бази пости
-
+    // Display a specific post from the database
     public function index()
     {
-        $post = Post::where("title", "Title 1")->first();
-        dump($post);
+        // Retrieve the first post with the title 'Title 1'
+        $posts = Post::all();
+        return view('posts', compact('posts'));
     }
 
-    // Write posts in data base
-
+    // Store new posts in the database
     public function create()
     {
-
         $post1 = [
             [
                 'title' => 'Перше повідомлення',
@@ -31,7 +27,7 @@ class PostController extends Controller
                 'is_published' => 1,
                 'created_at' => '2024-08-11 17:17:46',
                 'updated_at' => '2024-08-11 17:22:26',
-                'deleted_at' => NULL
+                'deleted_at' => null,
             ],
             [
                 'title' => 'Друге повідомлення',
@@ -41,7 +37,7 @@ class PostController extends Controller
                 'is_published' => 1,
                 'created_at' => '2024-08-12 10:30:15',
                 'updated_at' => '2024-08-12 10:45:00',
-                'deleted_at' => NULL
+                'deleted_at' => null,
             ],
             [
                 'title' => 'Третє повідомлення',
@@ -51,33 +47,51 @@ class PostController extends Controller
                 'is_published' => 1,
                 'created_at' => '2024-08-13 12:00:00',
                 'updated_at' => '2024-08-13 12:30:00',
-                'deleted_at' => NULL
-            ]
+                'deleted_at' => null,
+            ],
         ];
 
-        // Dowloads in data base posts;
+        // Insert posts into the database
         foreach ($post1 as $item) {
             Post::create($item);
         }
-        dd("create");
+
+        dd('Posts created successfully');
     }
-    
-        //Method update data
-        public function update() {
-            $post = Post::find(1);
+
+    // Update a specific post
+    public function update()
+    {
+        // Find the post with ID 1
+        $post = Post::find(1);
+
+        if ($post) {
             $post->update([
-               'title' => '1111111' 
+                'title' => '1111111',
             ]);
+
+            dd('Post updated successfully');
+        } else {
+            dd('Post not found');
         }
-        // Method delete 
-        // update migranion php artisan:fresh
-        public function delete() {
-            $post = Post::withTrashed()->find(2);
-         // $post->restore(); extract deleted data
-            $post->delete();
-            dd('deete');
+    }
+
+    // Delete or restore a specific post
+    public function delete()
+    {
+        // Find the post with ID 2, including soft-deleted ones
+        $post = Post::withTrashed()->find(2);
+
+        if ($post) {
+            if ($post->trashed()) {
+                $post->restore(); // Restore the post if it was soft-deleted
+                dd('Post restored successfully');
+            } else {
+                $post->delete(); // Soft delete the post
+                dd('Post deleted successfully');
+            }
+        } else {
+            dd('Post not found');
         }
+    }
 }
-
-
-
