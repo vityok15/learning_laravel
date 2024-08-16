@@ -17,7 +17,7 @@ class PostController extends Controller
         dump($post);
     }
 
-    // Write posts in db
+    // Write posts in data base
 
     public function create()
     {
@@ -55,14 +55,14 @@ class PostController extends Controller
             ]
         ];
 
-        // Dowloads in db posts;
+        // Dowloads in data base posts;
         foreach ($post1 as $item) {
             Post::create($item);
         }
         dd("create");
     }
     
-        //Method update
+        //Method update data
         public function update() {
             $post = Post::find(1);
             $post->update([

@@ -45,4 +45,6 @@ return new class extends Migration
 
 // php artisan migrate   залить міграцію
 
-// php artisan migrate:rollback  дробнуть міграцію
+// php artisan migrate:rollback  відкотити міграцію
+
+// php artisan make:migration    delete_colum_discription_to_posts_table  дробнуть міграцію
