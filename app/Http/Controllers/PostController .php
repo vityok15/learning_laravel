@@ -55,15 +55,20 @@ class PostController extends Controller
             ]
         ];
 
-
-
         // Збереження в базу постів;
         foreach ($post1 as $item) {
             Post::create($item);
         }
         dd("create");
-
     }
+    
+        //Method update
+        public function update() {
+            $post = Post::find(1);
+            $post->update([
+               'title' => '1111111' 
+            ]);
+        }
 }
 
 
